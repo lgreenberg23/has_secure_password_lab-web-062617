@@ -1,0 +1,8 @@
+<h1>Login</h1>
+<p>send post request to sessions#create</p>
+  <%= flash[:message] %>
+<%= form_tag sessions_path do %>
+  <%= text_field_tag :username %>
+  <%= password_field_tag :password %>
+  <%= submit_tag "Login" %>
+<% end %>
