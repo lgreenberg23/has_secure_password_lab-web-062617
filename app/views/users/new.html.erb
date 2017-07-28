@@ -1,5 +1,6 @@
 <h1>Create User</h1>
 <p>send post request to users#create</p>
+<<p style="color: red"><%= flash[:message] %></p>
 <%= form_for @user do |f| %>
   <%= f.label "Username" %>
   <%= f.text_field :username %>

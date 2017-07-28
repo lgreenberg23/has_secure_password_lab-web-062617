@@ -6,9 +6,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to homepage_path
+    else
+      flash[:message] = "You have typed something incorrectly"
+      redirect_to new_user_path
+    end
 
-    redirect_to homepage_path #session?
+    # redirect_to homepage_path #session?
   end
 
   def homepage
@@ -18,6 +25,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation)
+    params.require(:user).permit(:name, :password, :password_confirmation)
   end
 end
